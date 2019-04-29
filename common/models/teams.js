@@ -3,7 +3,7 @@
 module.exports = function(Teams) {
     Teams.reset = function (callback) {
         Teams.updateAll({}, {
-          budget: 1300
+          budget: 1700
         },
           function (err, player) {
             callback(err, true);

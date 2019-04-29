@@ -50,4 +50,37 @@ module.exports = function (Players) {
     }
   });
 
+  Players.createPlayer = function (callback) {
+    const Data = require('./data.json');
+    const createPlayer = pl => {
+      return new Promise((res, rej) => {
+        Players.create({
+          "player_id": pl.Id,
+          "image": pl.Picture,
+          "name": pl.Name,
+          "flat": pl.Flat,
+          "price": pl['Base Price'],
+          "category": pl.Category,
+        }, err => err ? rej(err) : res())
+        
+      })
+    };
+
+    Promise.all(Data.map(x => createPlayer(x)))
+    .then(() => callback(null, true))
+    .catch(callback)
+
+  };
+
+  Players.remoteMethod('createPlayer', {
+    http: {
+      path: '/createPlayer',
+      verb: 'get'
+    },
+    returns: {
+      arg: 'success',
+      type: 'boolean'
+    }
+  });
+
 };

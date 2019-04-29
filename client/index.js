@@ -44,8 +44,11 @@ function tcontroller($scope, $http) {
     $http.get('/api/teams?filter=%7B%22include%22%3A%20%22players%22%7D')
       .then(team => {
         $scope.teams = team.data
-        $scope.teams.map(t => {
+        $scope.teams = $scope.teams.map(t => {
           t.leftBudget = t.budget;
+          const ext = t.name === 'Panthers' ? 'jpg' : "jpeg";
+          t.image  = t.name.toLowerCase() + '.' + ext;
+          console.log(t);
           return t;
         })
       });
