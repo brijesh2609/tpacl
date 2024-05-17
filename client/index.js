@@ -46,9 +46,9 @@ function tcontroller($scope, $http) {
         $scope.teams = team.data
         $scope.teams = $scope.teams.map(t => {
           t.leftBudget = t.budget;
-          const ext = t.name === 'Panthers' ? 'jpg' : "jpeg";
-          t.image  = t.name.toLowerCase() + '.' + ext;
-          console.log(t);
+          // const ext = t.name === 'Panthers' ? 'jpg' : "jpeg";
+          // t.image  = t.name.toLowerCase() + '.' + ext;
+          // console.log(t);
           return t;
         })
       });
@@ -59,10 +59,12 @@ function tcontroller($scope, $http) {
 
   $scope.isBidding = function (index) {
     const bid = $scope.currentBid ? $scope.currentBid > 165 ? $scope.currentBid + 10 : $scope.currentBid + 5 : $scope.player.price;
+    const reseverBidget = (8 - $scope.teams[index].players.length) * 120;
     if ($scope.player.status == 'Sold') return;
     else if (+$scope.selectedTeam.team_id === (index + 1)) return;
-    else if ($scope.teams[index].leftBudget - bid < 0) return;
-    
+    else if ($scope.teams[index].leftBudget - reseverBidget - bid < 0) return;
+
+
     // debugger;
     $scope.player.status = '';
     $scope.selectedTeam = $scope.teams[index];
@@ -105,39 +107,39 @@ function tcontroller($scope, $http) {
       playerUpdate,
       teamUpdate
     ])
-    .then(() => {
-      $scope.selectedTeam = "";
-      $scope.currentBid = null;
-      $scope.getTeams();
-      $scope.getPlayer($scope.nextPlayerId);    
-    });
-  }
-
-  $scope.UnSold = function() {
-    $http.patch(`/api/players/${$scope.player.id}`,
-        {
-          status: 'UnSold'
-        }
-      )
-        .then(data => {
-          $scope.currentBid = null;
-          $scope.getPlayer($scope.nextPlayerId);
-        });
-  }
-
-  $scope.getUnsold = function() {
-    $http.get(`/api/players?filter=%7B%22where%22%3A%7B%22status%22%3A%20%22UnSold%22%7D%7D`)
-    .then(data => $scope.unsoldPlayers = data.data);
-  }
-
-  $scope.getCarousel = function() {
-    $http.get('/api/players?filter=%7B%22where%22%3A%7B%20%22or%22%3A%20%5B%20%7B%22status%22%3A%20%22Sold%22%7D%2C%20%7B%22status%22%3A%20%22UnSold%22%7D%5D%7D%2C%20%22include%22%20%3A%20%22teams%22%7D')
-    .then(data => {
-      $scope.caraousel = data.data;
-      $('.carousel').carousel({
-        interval: 2000
+      .then(() => {
+        $scope.selectedTeam = "";
+        $scope.currentBid = null;
+        $scope.getTeams();
+        $scope.getPlayer($scope.nextPlayerId);
       });
-    }); 
+  }
+
+  $scope.UnSold = function () {
+    $http.patch(`/api/players/${$scope.player.id}`,
+      {
+        status: 'UnSold'
+      }
+    )
+      .then(data => {
+        $scope.currentBid = null;
+        $scope.getPlayer($scope.nextPlayerId);
+      });
+  }
+
+  $scope.getUnsold = function () {
+    $http.get(`/api/players?filter=%7B%22where%22%3A%7B%22status%22%3A%20%22UnSold%22%7D%7D`)
+      .then(data => $scope.unsoldPlayers = data.data);
+  }
+
+  $scope.getCarousel = function () {
+    $http.get('/api/players?filter=%7B%22where%22%3A%7B%20%22or%22%3A%20%5B%20%7B%22status%22%3A%20%22Sold%22%7D%2C%20%7B%22status%22%3A%20%22UnSold%22%7D%5D%7D%2C%20%22include%22%20%3A%20%22teams%22%7D')
+      .then(data => {
+        $scope.caraousel = data.data;
+        $('.carousel').carousel({
+          interval: 2000
+        });
+      });
   }
 
 }
