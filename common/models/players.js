@@ -1,86 +1,90 @@
-'use strict';
+"use strict";
 
 module.exports = function (Players) {
-
   Players.byId = function (id, callback) {
-    Players.find({
-      where: {
-        player_id: id
+    Players.find(
+      {
+        where: {
+          player_id: id,
+        },
+        include: "teams",
       },
-      include: "teams"
-    },
       function (err, player) {
         callback(err, player);
-      });
+      }
+    );
   };
 
-  Players.remoteMethod('byId', {
+  Players.remoteMethod("byId", {
     http: {
-      path: '/id/:id',
-      verb: 'get'
+      path: "/id/:id",
+      verb: "get",
     },
     returns: {
-      arg: 'success',
-      type: 'object'
+      arg: "success",
+      type: "object",
     },
-    accepts: [
-      { arg: 'id', type: 'string' },
-    ]
+    accepts: [{ arg: "id", type: "string" }],
   });
 
   Players.reset = function (callback) {
-    Players.updateAll({}, {
-      "status": null,
-      "sp": null,
-      "teamsId": ""
-    },
+    Players.updateAll(
+      {},
+      {
+        status: null,
+        sp: null,
+        teamsId: "",
+      },
       function (err, player) {
         callback(err, true);
-      });
+      }
+    );
   };
 
-  Players.remoteMethod('reset', {
+  Players.remoteMethod("reset", {
     http: {
-      path: '/reset',
-      verb: 'get'
+      path: "/reset",
+      verb: "get",
     },
     returns: {
-      arg: 'success',
-      type: 'boolean'
-    }
+      arg: "success",
+      type: "boolean",
+    },
   });
 
   Players.createPlayer = function (callback) {
-    const Data = require('./data.json');
-    const createPlayer = pl => {
+    // const Data = require("./data.json");
+    const devx = require("./devx.json");
+
+    const createPlayer = (pl, i) => {
       return new Promise((res, rej) => {
-        Players.create({
-          "player_id": pl.Id,
-          "image": pl.Picture,
-          "name": pl.Name,
-          "flat": pl.Flat,
-          "price": pl['Base Price'],
-          "category": pl.Category,
-        }, err => err ? rej(err) : res())
-        
-      })
+        Players.create(
+          {
+            player_id: i,
+            image: `${i}.jpg`,
+            name: pl,
+            // flat: pl.Flat,
+            price: 100,
+            // category: pl.Category,
+          },
+          (err) => (err ? rej(err) : res())
+        );
+      });
     };
 
-    Promise.all(Data.map(x => createPlayer(x)))
-    .then(() => callback(null, true))
-    .catch(callback)
-
+    Promise.all(devx.map((x, i) => createPlayer(x, i + 1)))
+      .then(() => callback(null, true))
+      .catch(callback);
   };
 
-  Players.remoteMethod('createPlayer', {
+  Players.remoteMethod("createPlayer", {
     http: {
-      path: '/createPlayer',
-      verb: 'get'
+      path: "/createPlayer",
+      verb: "get",
     },
     returns: {
-      arg: 'success',
-      type: 'boolean'
-    }
+      arg: "success",
+      type: "boolean",
+    },
   });
-
 };

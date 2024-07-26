@@ -19,21 +19,21 @@
   },
   {
     "Id": 3,
-    "Name": "Paras Jitwan",
-    "Flat": "D/10B",
-    "Phone": 8155980820,
+    "Name": "Suryansh",
+    "Flat": "D/8A",
+    "Phone": 9265421874,
     "Base Price": 120,
     "Category": "B",
-    "Picture": "paras.jpg"
+    "Picture": "guddi.jpg"
   },
   {
     "Id": 4,
-    "Name": "Sonu Batra",
-    "Flat": "D/9A",
-    "Phone": 9924100757,
+    "Name": "Vadher",
+    "Flat": "A/13A",
+    "Phone": 9724266681,
     "Base Price": 120,
     "Category": "B",
-    "Picture": "sonu.jpeg"
+    "Picture": "vadheer.jpg"
   },
   {
     "Id": 5,
@@ -109,12 +109,12 @@
   },
   {
     "Id": 13,
-    "Name": "Sandal Jain",
-    "Flat": "C/6A",
-    "Phone": 7984614808,
+    "Name": "Pramod Ji",
+    "Flat": "A/8A",
+    "Phone": 7490022132,
     "Base Price": 120,
     "Category": "A",
-    "Picture": "sandal.png"
+    "Picture": "pramod.jpg"
   },
   {
     "Id": 14,
@@ -136,12 +136,12 @@
   },
   {
     "Id": 16,
-    "Name": "Akhil Jitwan",
-    "Flat": "D/10B",
-    "Phone": 9913344574,
+    "Name": "Aneesh",
+    "Flat": "A/6A",
+    "Phone": 9890449116,
     "Base Price": 120,
     "Category": "B",
-    "Picture": "akhil.jpeg"
+    "Picture": "aneesh.jpg"
   },
   {
     "Id": 17,
@@ -163,21 +163,21 @@
   },
   {
     "Id": 19,
-    "Name": "Mayank Agarwal",
-    "Flat": "B/13A",
-    "Phone": 12099382871,
+    "Name": "Archit",
+    "Flat": "A/5B",
+    "Phone": 6355803656,
     "Base Price": 120,
     "Category": "C",
-    "Picture": "mayank.jpg"
+    "Picture": "archeet.jpg"
   },
   {
     "Id": 20,
-    "Name": "Raman Bantia",
-    "Flat": "B/11A",
-    "Phone": 12016405441,
+    "Name": "Mohit",
+    "Flat": "F/4B",
+    "Phone": 9327369327,
     "Base Price": 120,
     "Category": "B",
-    "Picture": "raman.jpeg"
+    "Picture": "mohit.jpg"
   },
   {
     "Id": 21,
@@ -190,12 +190,12 @@
   },
   {
     "Id": 22,
-    "Name": "Pankaj Gangwani",
-    "Flat": "E/8b",
-    "Phone": 9824104659,
+    "Name": "Harshit",
+    "Flat": "E/4B",
+    "Phone": 7011503159,
     "Base Price": 120,
     "Category": "B",
-    "Picture": "pankaj.jpg"
+    "Picture": "harshit.jpg"
   },
   {
     "Id": 23,
@@ -208,21 +208,21 @@
   },
   {
     "Id": 24,
-    "Name": "Rahul Bantia",
-    "Flat": "B/11A",
-    "Phone": 9429931968,
+    "Name": "Vivaan",
+    "Flat": "B/3A",
+    "Phone": 8849487656,
     "Base Price": 120,
     "Category": "C",
-    "Picture": "rahul.jpeg"
+    "Picture": "vivaan.jpg"
   },
   {
     "Id": 25,
-    "Name": "Saurabh Arya",
-    "Flat": "C/7A",
-    "Phone": 9265727540,
+    "Name": "P Singh",
+    "Flat": "F",
+    "Phone": 9054673343,
     "Base Price": 120,
     "Category": "B",
-    "Picture": "saurabharya.jpeg"
+    "Picture": "psingh.jpeg"
   },
   {
     "Id": 26,
@@ -233,15 +233,7 @@
     "Category": "B",
     "Picture": "heet.jpeg"
   },
-  {
-    "Id": 27,
-    "Name": "Dhruv",
-    "Flat": "B/4A",
-    "Phone": 7984507750,
-    "Base Price": 120,
-    "Category": "C",
-    "Picture": "shruvbacha.jpeg"
-  },
+
   {
     "Id": 28,
     "Name": "Meet Jain",
@@ -270,24 +262,6 @@
     "Picture": "viraj.jpeg"
   },
   {
-    "Id": 31,
-    "Name": "Bajrang",
-    "Flat": "C/7B",
-    "Phone": 9723158161,
-    "Base Price": 120,
-    "Category": "C",
-    "Picture": "bajrang.jpeg"
-  },
-  {
-    "Id": 32,
-    "Name": "Prashant",
-    "Flat": "D/10B",
-    "Phone": 8866155368,
-    "Base Price": 120,
-    "Category": "C",
-    "Picture": "prashant.jpeg"
-  },
-  {
     "Id": 33,
     "Name": "Aakash Agarwal",
     "Flat": "A/8A",
@@ -305,15 +279,7 @@
     "Category": "C",
     "Picture": "keshav.jpeg"
   },
-  {
-    "Id": 35,
-    "Name": "Aayush Agarwal",
-    "Flat": "D/6A",
-    "Phone": 7621984775,
-    "Base Price": 120,
-    "Category": "C",
-    "Picture": "aayushagarwal.jpeg"
-  },
+
   {
     "Id": 36,
     "Name": "Nishant Mittal",

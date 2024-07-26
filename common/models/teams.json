@@ -14,6 +14,9 @@
     },
     "team_id": {
       "type": "string"
+    },
+    "image": {
+      "type": "string"
     }
   },
   "validations": [],

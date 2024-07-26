@@ -1,0 +1,1 @@
+1. docker run --name mongodb3.2 -d -p 27018:27017 mongo:3
