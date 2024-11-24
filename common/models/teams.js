@@ -2,30 +2,29 @@
 
 module.exports = function (Teams) {
   Teams.reset = function (callback) {
+    const allTeams = require("./dink-team.json");
+
     const createTeam = (pl, i) => {
       return new Promise((res, rej) => {
         Teams.create(
           {
-            name: pl.name,
-            image: pl.image,
+            name: pl.Name,
+            shortName: pl["Short Name"],
+            image: `${pl.Logo}.jpeg`,
+            owner: pl["Owner Name"],
             team_id: i.toString(),
-            budget: 2000,
+            budget: 65,
           },
           (err) => (err ? rej(err) : res())
         );
       });
     };
 
-    Promise.all(
-      [
-        { name: "Karan Karachi", image: "kk.png" },
-        { name: "Vasu Vampires", image: "vv.png" },
-        { name: "Piyush Panthers", image: "pp.png" },
-        { name: "Krishnights", image: "kn.png" },
-      ].map((x, i) => createTeam(x, i + 1))
-    )
-      .then(() => callback(null, true))
-      .catch(callback);
+    Teams.deleteAll({}, (err) => {
+      Promise.all(allTeams.map((x, i) => createTeam(x, i + 1)))
+        .then(() => callback(null, true))
+        .catch(callback);
+    });
   };
 
   Teams.remoteMethod("reset", {

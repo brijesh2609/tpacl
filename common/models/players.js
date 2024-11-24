@@ -54,27 +54,29 @@ module.exports = function (Players) {
 
   Players.createPlayer = function (callback) {
     // const Data = require("./data.json");
-    const devx = require("./devx.json");
+    const allPlayers = require("./dink-players.json");
 
     const createPlayer = (pl, i) => {
       return new Promise((res, rej) => {
         Players.create(
           {
             player_id: i,
-            image: `${i}.jpg`,
-            name: pl,
-            // flat: pl.Flat,
-            price: 100,
-            // category: pl.Category,
+            image: `${pl.Image}.jpeg`,
+            name: pl.Name,
+            price: pl.Experience === "Professional" ? 10 : 5,
+            category: pl.Experience,
           },
           (err) => (err ? rej(err) : res())
         );
       });
     };
 
-    Promise.all(devx.map((x, i) => createPlayer(x, i + 1)))
-      .then(() => callback(null, true))
-      .catch(callback);
+    Players.deleteAll({}, (err) => {
+      console.log(err);
+      Promise.all(allPlayers.map((x, i) => createPlayer(x, i + 1)))
+        .then(() => callback(null, true))
+        .catch(callback);
+    });
   };
 
   Players.remoteMethod("createPlayer", {

@@ -19392,3 +19392,12 @@ svg {
 .fe-zoom-out:before {
   content: "\ea06";
 }
+
+.devx {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  color: #fff;
+  font-size: 24px;
+  margin-top: 16px;
+}

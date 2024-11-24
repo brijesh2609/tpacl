@@ -1,69 +1,66 @@
-<div class="row" ng-init="getTeams(); getUnsold();">
+<div ng-init="getTeams(); getUnsold();">
+  <div class="d-flex">
 
-  <div class="card" ng-repeat="team in teams" style="width:24%; margin: 4px;">
-    <div class="card-header">
-      <h3 class="card-title"
-        style="font-weight: 600; display: flex; justify-content: center; width: 100%; line-height: 32px; padding: 12px;">
-        <div>
-          <span class="avatar avatar-l" style="background-image: url(/images/{{team.image}})"></span>
-          <!-- {{team.name}} -->
+    <div class="card" style="min-width: 350px; margin: 12px;" ng-if="unsoldPlayers.length">
+      <div class="card-header">
+        <h3 class="card-title" style="text-align: center;">Unsold Players
+          <span class="badge badge-pill badge-primary" style="font-size:14px;">{{unsoldPlayers.length}}</span>
+          <a class="btn btn-info btn-sm" style="margin-left:70px;" href="/">Players</a>
+        </h3>
+      </div>
+      <div class="card-body d-flex flex-column">
+        <div class="d-flex align-items-center pb-2" ng-repeat="player in unsoldPlayers">
+          <span class="avatar avatar-xl"
+            style="background-image: url(/images/dink/players/{{player.player_id}}.jpeg)"></span>
+          <div style="padding-left: 10px;">
+            <h4>{{player.name}}</h4>
+            <strong class="d-block text-muted" style="margin-top:-5px;">
+              <span>{{player.category}}</span>
+            </strong>
+          </div>
+          <div class="ml-auto">
+            {{player.price}} Cr
+          </div>
         </div>
-        <div style="font-weight: 600;">{{team.owner}}</div>
-        <!-- <span class="badge badge-pill badge-primary" style="font-size:14px;">{{team.players.length}}</span> -->
-        <span></span>
-      </h3>
+      </div>
     </div>
-    <div class="card-body d-flex flex-column">
-      <!-- <h4>{{team.name}}</h4> -->
-      <div class="d-flex align-items-center pb-2" ng-repeat="player in team.players track by $index">
-        <span class="avatar avatar-xl" style="background-image: url(/images/devx/{{player.image}})"></span>
-        <div style="padding-left: 10px;">
-          <h4 style="display: inline">
-            {{player.name}}
-            <span class="badge badge-pill badge-info"
-              style="font-size:10px;margin-left:3px;border-radius:50%;position:absolute;height:18px;"
-              ng-if="player.captain">c</span>
-            <span class="badge badge-pill badge-success"
-              style="font-size:10px;margin-left:3px;border-radius:50%;position:absolute;height:20px;"
-              ng-if="player.vcaptain">vc</span>
-          </h4>
-          <strong class="d-block text-muted" style="">
-            {{player.flat}}
-            <span style="margin-left:20px; color: green;">{{player.category}}</span>
-            <!-- <span style="margin-left:20px; color: black;">{{player.sp}}</span> -->
-          </strong>
+
+    <div class="card" ng-repeat="team in teams" style="min-width: 350px; margin: 12px;">
+      <div class=" card-header">
+        <h3 class="card-title"
+          style="font-weight: 600; display: flex; justify-content: center; width: 100%; line-height: 32px; padding: 12px;">
+          <div>
+            <!-- <span class="avatar avatar-l" -->
+            <!-- style="background-image: url(/images/dink/teams/{{team.image}}); background-position: center; background-repeat: no-repeat; background-size: contain;"></span> -->
+            {{team.name}}
+          </div>
+          <span></span>
+        </h3>
+      </div>
+      <div class="card-body d-flex flex-column">
+        <!-- <h4>{{team.name}}</h4> -->
+        <div class="d-flex align-items-center pb-2" ng-repeat="player in team.players track by $index">
+          <span class="avatar avatar-xl"
+            style="background-image: url(/images/dink/players/{{player.player_id}}.jpeg)"></span>
+          <div style="padding-left: 10px;">
+            <h4 style="display: inline">
+              {{player.name}}
+              <span class="badge badge-pill badge-info"
+                style="font-size:10px;margin-left:3px;border-radius:50%;position:absolute;height:18px;"
+                ng-if="player.captain">c</span>
+              <span class="badge badge-pill badge-success"
+                style="font-size:10px;margin-left:3px;border-radius:50%;position:absolute;height:20px;"
+                ng-if="player.vcaptain">vc</span>
+            </h4>
+            <strong class="d-block text-muted" style="">
+              <span>{{player.category}}</span>
+            </strong>
+          </div>
+          <div class="ml-auto" style="font-weight: bold;">
+            {{player.sp}} Cr
+          </div>
         </div>
-        <!-- <div class="ml-auto">
-          {{player.sp}}
-        </div> -->
       </div>
     </div>
   </div>
-
-  <!-- <div class="card" style="width:17%; margin: 3px; margin-right: 0">
-    <div class="card-header">
-      <h3 class="card-title" style="text-align: center;">UnSold
-        <span class="badge badge-pill badge-primary" style="font-size:14px;">{{unsoldPlayers.length}}</span>
-        <a class="btn btn-info btn-sm" style="margin-left:70px;" href="/">Players</a>
-      </h3>
-    </div>
-    <div class="card-body d-flex flex-column">
-      <h4>Unsold</h4>
-      <div class="d-flex align-items-center pb-2" ng-repeat="player in unsoldPlayers">
-        <span class="avatar avatar-xl" style="background-image: url(/images/players/{{player.image}})"></span>
-        <div style="padding-left: 10px;">
-          <h4>{{player.name}}</h4>
-          <strong class="d-block text-muted" style="margin-top:-5px;">
-            {{player.flat}}
-            <span style="margin-left:20px; color: green;">{{player.category}}</span>
-            <span style="margin-left:20px; color: black;">{{player.price}}</span>
-          </strong>
-        </div>
-        <div class="ml-auto">
-          {{player.price}}
-        </div>
-      </div>
-    </div>
-  </div> -->
-
 </div>

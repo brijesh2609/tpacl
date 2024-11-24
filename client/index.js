@@ -45,21 +45,39 @@ function tcontroller($scope, $http) {
         $scope.teams = team.data;
         $scope.teams = $scope.teams.map((t) => {
           t.leftBudget = t.budget;
+          t.category = { Intermediate: 0, Advance: 0, Professional: 0 };
+          t.players.forEach((p) => {
+            if (p.category) {
+              t.category[p.category]++;
+            }
+          });
           return t;
         });
       });
   };
 
-  $scope.getPlayer("2");
+  $scope.getPlayer("1");
   $scope.getTeams();
 
   $scope.isBidding = function (index) {
     const bid = $scope.currentBid
-      ? $scope.currentBid >= 200
-        ? $scope.currentBid + 20
-        : $scope.currentBid + 10
+      ? $scope.currentBid + 0.5
       : $scope.player.price;
-    const reseverBidget = (7 - $scope.teams[index].players.length) * 100;
+
+    const team = $scope.teams[index];
+
+    const isAPL = $scope.player.category !== "Professional" ? 1 : 0;
+    const isPPL = $scope.player.category === "Professional" ? 1 : 0;
+
+    const aL = Math.max(
+      4 - team.category.Intermediate - team.category.Advance - isAPL,
+      0
+    );
+
+    const pL = Math.max(1 - team.category.Professional - isPPL, 0);
+
+    const reseverBidget = aL * 5 + pL * 10;
+
     if ($scope.player.status == "Sold") return;
     else if (+$scope.selectedTeam.team_id === index + 1) return;
     else if ($scope.teams[index].leftBudget - reseverBidget - bid < 0) return;
@@ -70,6 +88,11 @@ function tcontroller($scope, $http) {
     $scope.currentBid = bid;
     $scope.teams[index].budget =
       $scope.teams[index].leftBudget - $scope.currentBid;
+  };
+
+  $scope.Next = function () {
+    $scope.nextPlayerId = (+$scope.nextPlayerId + 1).toString();
+    $scope.nextPlayer();
   };
 
   $scope.nextPlayer = function () {
