@@ -1,14 +1,14 @@
 <div class="d-flex justify-content-center m-2" style="background-color: black;">
   <div class="container-fluid" style="background-color: black;">
     <div class="row">
-      <div class="col-md-3" style="margin-top:-45px;">
-        <div class="text-center" style="margin-top:55px; height: auto; width: 100%; height: 350px;">
-          <img src="/images/dink/players/{{player.player_id}}.jpeg" style="max-height: 350px;" class="rounded img-fluid"
+      <div class="col-md-4" style="margin-top:-45px;">
+        <div class="text-center" style="margin-top:55px; height: auto; width: 100%; height: 600px;">
+          <img src="/images/dink/players/{{player.player_id}}.jpeg" style="max-height: 600px;" class="rounded img-fluid"
             alt="...">
         </div>
 
-        <div style="padding-top: 30px; font-size: 20px; color: white;">
-          <div style="font-size: 24px;">
+        <div style="padding-top: 30px; font-size: 32px; color: white; text-align: center;">
+          <div style="font-size: 48px;">
             <span style="font-weight: bold;">{{player.name}}</span>
           </div>
 
@@ -56,13 +56,13 @@
       </div>
 
 
-      <div class="col-md-9">
+      <div class="col-md-8">
         <div class="row">
-          <div class="col-md-3 mb-4" ng-repeat="team in teams track by $index">
+          <div class="col-md-4 mb-4" ng-repeat="team in teams track by $index">
             <div class="card" style="background-color: #fbfbfb; margin-bottom: 0;">
               <div ng-click="isBidding($index)" style="padding: 8px;"
                 ng-style="{'background-color': selectedTeam.team_id==($index +1) ? 'skyblue' : '#fff'}">
-                <h3>({{$index + 1}}) {{team.shortName}}</h3>
+                <h3>({{$index + 1}}) {{team.name}}</h3>
                 <!-- <span class="badge badge-pill badge-primary"
                   style="font-size:20px; height:36px; width: 15%; position: absolute; padding: 6px; right: 5px; top: 5px;">
                   {{team.players.length}}
